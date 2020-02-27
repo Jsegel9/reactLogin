@@ -1,51 +1,28 @@
-import React, { Component } from 'react';
-const axios = require('axios')
-
-// function Login(){
-
+import React, { Component, useContext } from 'react';
+import axios from 'axios'
+import LoginContext from '../utils/loginContext'
 
 
-// const handleSubmit = function(e){
-//     e.preventDefault();
-//     axios.post('localhost:3000/api/login')
-//     .then(function(response){
-//         console.log(response)
-//     })
-// }
-//     return(
-//         <>
-//         <h1>Login</h1>
-// <form onSubmit={handleSubmit} >
-// <div>
-//     <label for="email">Email</label>
-//     <input type="email" id="email" name="email" required></input>
-// </div>
-// <div>
-//     <label for="password">password</label>
-//     <input type="password" id="password" name="password" required></input>
-// </div>
-// <button type="submit">Login</button>
-// </form>
-// <a href="/register">Register</a>
-// </>
-//     )
-// }
 
 class Login extends React.Component{
+    static contextType = LoginContext;
     constructor(props){
         super(props);
         this.state={
-            loginFields:{
-                email: '',
-                password: ''
-            }
+            email:'',
+            password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onInputChange = this.onInputChange.bind(this)
+
+    }
+    componentDidMount(){
+        const user=this.context;
+        console.log(user)
     }
    handleSubmit(e){
         e.preventDefault();
-    axios.post('/api/login',this.state.loginFields)
+    axios.post('/api/login',{email: this.state.email, password: this.state.password})
     .then((response)=>{
         console.log(response)
         // console.log(this.state.loginFields)
@@ -55,15 +32,14 @@ class Login extends React.Component{
     })
     }
     onInputChange(e){
-        let loginFields = {...this.state.loginFields}
         const {name, value} = e.target
         
         this.setState({
-            loginFields: {[name]: value}
+            [name]: value
         })
-        console.log(loginFields)
     }
     render(){
+        console.log(this.state)
         return(
             <>
         <h1>Login</h1>

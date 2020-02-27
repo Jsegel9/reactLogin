@@ -19,6 +19,10 @@ app.post('/api/login', (req,res)=>{
     res.send("success")
     console.log(req.body)
 })
+app.post('/api/register', (req,res)=>{
+    res.send("Success Register")
+    console.log(req.body)
+})
 
 // axios.post('/api/login', (req,res)=>{
 //     res.send('sucdcess')
