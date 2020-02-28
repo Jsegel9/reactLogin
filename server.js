@@ -41,13 +41,15 @@ app.post('/api/login', (req,res)=>{
     console.log(req.body)
 })
 app.post('/api/register', async (req,res)=>{
+    console.log(req.body)
     try{
         const hashdPwrd = await bcrypt.hash(req.body.password, 10)
         users.push({
             id: Date.now().toString(),
             name: req.body.name,
             email: req.body.email,
-            password: hashdPwrd
+            password: hashdPwrd,
+            isAuthenticated: req.body.isAuth
         })
         res.send(200)}
         catch{
