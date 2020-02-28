@@ -10,10 +10,12 @@ class App extends Component{
   constructor(){
     super()
     this.state = {
-      loggedIn: false
+      isAuthenticated: false
+      //I don't think you'll need this state, just update logincontext
     }
   }
   render(){
+    console.log(LoginContext)
     return (
     <>
     <LoginContext.Provider value={this.state}>

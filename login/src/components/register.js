@@ -2,6 +2,7 @@
 import React from 'react';
 import LoginContext from '../utils/loginContext'
 import axios from 'axios';
+import bcrypt from 'bcryptjs'
 
 class Register extends React.Component{
     static contextType = LoginContext;
