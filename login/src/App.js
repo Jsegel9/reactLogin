@@ -4,18 +4,19 @@ import Register from './components/register'
 import Login from './components/login'
 import Home from './components/home'
 import './App.css';
+import LoginContext from './utils/loginContext'
 
 class App extends Component{
   constructor(){
     super()
     this.state = {
-      loggedIn: false,
-      username: null
+      loggedIn: false
     }
   }
   render(){
     return (
     <>
+    <LoginContext.Provider value={this.state}>
       <Router>
         <div>
           <Switch>
@@ -25,6 +26,7 @@ class App extends Component{
           </Switch>
         </div>
       </Router>
+    </LoginContext.Provider>
     </>
     
   )}

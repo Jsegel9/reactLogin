@@ -15,6 +15,8 @@ const axios = require('axios')
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const users = []
+
 app.post('/api/login', (req,res)=>{
     res.send("success")
     console.log(req.body)
@@ -23,11 +25,6 @@ app.post('/api/register', (req,res)=>{
     res.send("Success Register")
     console.log(req.body)
 })
-
-// axios.post('/api/login', (req,res)=>{
-//     res.send('sucdcess')
-//     console.log(req)
-// })
 
 app.listen(PORT, function(){
     console.log(`Server now Listening on http://localhost:${PORT}`);

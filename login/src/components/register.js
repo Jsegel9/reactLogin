@@ -3,30 +3,6 @@ import React from 'react';
 import LoginContext from '../utils/loginContext'
 import axios from 'axios';
 
-// function Register(){
-//     return(
-//         <>
-//         <h1>Register</h1>
-// <form action="/register" method="POST">
-// <div>
-//     <label for="name">Name</label>
-//     <input type="text" id="name" name="name" required></input>
-// </div>
-// <div>
-//     <label for="email">Email</label>
-//     <input type="email" id="email" name="email" required></input>
-// </div>
-// <div>
-//     <label for="password">password</label>
-//     <input type="password" id="password" name="password" required></input>
-// </div>
-// <button type="submit">Register</button>
-// </form>
-// <a href="/login">Login</a>
-//         </>
-//     );
-// }
-
 class Register extends React.Component{
     static contextType = LoginContext;
     constructor(props){
@@ -41,6 +17,8 @@ class Register extends React.Component{
     }
     componentDidMount(){
         const user=this.context;
+        console.log(user);
+        
     }
     handleSubmit(e){
         e.preventDefault();
