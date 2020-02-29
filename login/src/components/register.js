@@ -1,17 +1,21 @@
 // register new user page
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import LoginContext from '../utils/loginContext'
 import axios from 'axios';
 import bcrypt from 'bcryptjs'
 
 class Register extends React.Component{
+    const [login, setLogin] = useState({})
+
     static contextType = LoginContext;
+
     constructor(props){
         super(props);
         this.state={
             name: '',
             email:'',
-            password:''
+            password:'',
+            isAuth: false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onInputChange = this.onInputChange.bind(this)
@@ -21,11 +25,23 @@ class Register extends React.Component{
         console.log(user);
         
     }
+    componentDidUpdate(prevstate){
+        if (prevstate.isAuth ==! this.state.isAuth){
+        }
+    }
     handleSubmit(e){
         e.preventDefault();
-        axios.post('api/register', {name: this.state.name, email: this.state.email, password: this.state.password, isAuth: this.context.isAuthenticated})
+        axios.post('api/register', {name: this.state.name, email: this.state.email, password: this.state.password, isAuth: this.state.isAuth})
         .then((response)=>{
             console.log(response)
+            if(response.status === 200){
+                console.log("registration successful")
+                console.log(LoginContext);
+                this.setState({isAuth: true})
+                console.log(LoginContext)
+                console.log(this.state)
+                
+            }
         })
         .catch((error)=>{
             console.log(error)
@@ -40,6 +56,7 @@ class Register extends React.Component{
     render(){
         return(
             <>
+            <LoginContext.Provider value={this.state}>
         <h1>Register</h1>
 <form onSubmit={this.handleSubmit}>
 <div>
@@ -57,6 +74,7 @@ class Register extends React.Component{
 <button type="submit">Register</button>
 </form>
 <a href="/login">Login</a>
+</LoginContext.Provider>
         </>
         )
     }

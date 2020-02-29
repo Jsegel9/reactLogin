@@ -1,38 +1,39 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Register from './components/register'
+import Register2 from './components/register2'
 import Login from './components/login'
 import Home from './components/home'
 import './App.css';
 import LoginContext from './utils/loginContext'
 
-class App extends Component{
-  constructor(){
-    super()
-    this.state = {
-      isAuthenticated: false
-      //I don't think you'll need this state, just update logincontext
-    }
+function App() {
+  const [username, setUsername] = useState('')
+
+  function handleLoginSubmit(newName) {
+    setUsername(newName)
+    console.log('ive been clicked')
+    console.log(`newname in app: ${newName}`)
   }
-  render(){
-    console.log(LoginContext)
-    return (
+  console.log(`what is the username state in app?  ${username}`)
+
+  return (
     <>
-    <LoginContext.Provider value={this.state}>
-      <Router>
-        <div>
-          <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path='/register' component={Register}/>
-          </Switch>
-        </div>
-      </Router>
-    </LoginContext.Provider>
+      <LoginContext.Provider value={{username, handleLoginSubmit}}>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/register2' component={Register2}/>
+            </Switch>
+          </div>
+        </Router>
+      </LoginContext.Provider>
     </>
-    
-  )}
-  
+  )
+
 }
 
 export default App;

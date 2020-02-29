@@ -53,7 +53,7 @@ app.post('/api/register', async (req,res)=>{
         })
         res.send(200)}
         catch{
-            res.send(300)
+            res.send("error registering")
         }
         console.log(users)
 })
