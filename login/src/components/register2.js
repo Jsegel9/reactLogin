@@ -4,17 +4,19 @@ import LoginContext from '../utils/loginContext'
 import axios from 'axios';
 import bcrypt from 'bcryptjs'
 import Login from './login';
+import { withRouter, useHistory } from 'react-router-dom';
 
 function Register2(){
     const [email, setEmail] = useState('')
     const [localUsername, setLocalUsername] = useState('')
     const [password, setPassword] = useState('');
-
+    let history = useHistory();
     let {username, isAuthenticated, handleRegisterSubmit} = useContext(LoginContext)
     const newSubmit = event => {
         event.preventDefault();
         console.log(event)
         handleRegisterSubmit(localUsername, email, password)
+        history.push('/login')
 
     }
     const onInputChange = (e)=>{
@@ -98,4 +100,4 @@ function Register2(){
 }
 
 
-export default Register2;    
+export default withRouter(Register2);    

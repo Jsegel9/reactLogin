@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, useHistory } from "react-router-dom";
 import Register from './components/register'
 import Register2 from './components/register2'
 import Login from './components/login'
@@ -9,11 +9,15 @@ import LoginContext from './utils/loginContext'
 // import e from 'express';
 import axios from 'axios';
 
+  
+
 function App() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuth, setIsAuth] = useState('');
+// let history = useHistory();
+  
 
   function handleRegisterSubmit(newName, email, password) {
     setUsername(newName);
@@ -22,6 +26,10 @@ function App() {
     axios.post('api/register', {name: newName, email: email, password: password})
     .then((response)=>{
       console.log(response)
+      if(response.status === 200){
+        // this.history.push('/login')
+        // Redirect('/login')
+      }
     })
     console.log('ive been clicked')
     console.log(`newname in app: ${newName}`)
