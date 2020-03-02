@@ -5,7 +5,6 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs'
 
 class Register extends React.Component{
-    const [login, setLogin] = useState({})
 
     static contextType = LoginContext;
 

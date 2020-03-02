@@ -6,20 +6,31 @@ import Login from './components/login'
 import Home from './components/home'
 import './App.css';
 import LoginContext from './utils/loginContext'
+// import e from 'express';
+import axios from 'axios';
 
 function App() {
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isAuth, setIsAuth] = useState('');
 
-  function handleLoginSubmit(newName) {
-    setUsername(newName)
+  function handleRegisterSubmit(newName, email, password) {
+    setUsername(newName);
+    setEmail(email);
+    setPassword(password)
+    axios.post('api/register', {name: newName, email: email, password: password})
+    .then((response)=>{
+      console.log(response)
+    })
     console.log('ive been clicked')
     console.log(`newname in app: ${newName}`)
   }
-  console.log(`what is the username state in app?  ${username}`)
+  console.log(`what is the state in app?  ${username} ${email} ${password}`)
 
   return (
     <>
-      <LoginContext.Provider value={{username, handleLoginSubmit}}>
+      <LoginContext.Provider value={{username, handleRegisterSubmit}}>
         <Router>
           <div>
             <Switch>

@@ -8,12 +8,13 @@ import Login from './login';
 function Register2(){
     const [email, setEmail] = useState('')
     const [localUsername, setLocalUsername] = useState('')
+    const [password, setPassword] = useState('');
 
-    let {username, isAuthenticated, handleLoginSubmit} = useContext(LoginContext)
+    let {username, isAuthenticated, handleRegisterSubmit} = useContext(LoginContext)
     const newSubmit = event => {
         event.preventDefault();
         console.log(event)
-        handleLoginSubmit(localUsername)
+        handleRegisterSubmit(localUsername, email, password)
 
     }
     const onInputChange = (e)=>{
@@ -21,6 +22,8 @@ function Register2(){
             setLocalUsername(e.target.value)
         } else if (e.target.name ==="email"){
             setEmail(e.target.value)
+        }else if (e.target.name === "password"){
+            setPassword(e.target.value)
         }
         console.log(username)
         console.log(localUsername)

@@ -51,7 +51,7 @@ app.post('/api/register', async (req,res)=>{
             password: hashdPwrd,
             isAuthenticated: req.body.isAuth
         })
-        res.send(200)}
+        res.send(200, users)}
         catch{
             res.send("error registering")
         }
