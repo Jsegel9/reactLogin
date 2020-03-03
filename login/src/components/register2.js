@@ -30,8 +30,8 @@ function Register2(){
         console.log(username)
         console.log(localUsername)
     }
-const redirect = ()=>{
-    return history.push('/login')
+const redirect = (location)=>{
+    return history.push('/'+location)
 }
 
     // static contextType = LoginContext;

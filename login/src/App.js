@@ -28,7 +28,8 @@ function App() {
     .then((response)=>{
       console.log(response)
       if(response.status === 200){
-        cb();
+        var target = "login"
+        cb(target);
         // Register2.redirect()
       }
     })
