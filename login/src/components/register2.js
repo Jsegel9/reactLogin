@@ -15,8 +15,8 @@ function Register2(){
     const newSubmit = event => {
         event.preventDefault();
         console.log(event)
-        handleRegisterSubmit(localUsername, email, password)
-        history.push('/login')
+        handleRegisterSubmit(localUsername, email, password, redirect)
+        // history.push('/login')
 
     }
     const onInputChange = (e)=>{
@@ -30,6 +30,10 @@ function Register2(){
         console.log(username)
         console.log(localUsername)
     }
+const redirect = ()=>{
+    return history.push('/login')
+}
+
     // static contextType = LoginContext;
 
     // constructor(props){

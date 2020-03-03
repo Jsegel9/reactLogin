@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, useHistory } from "react-router-dom";
 import Register from './components/register'
 import Register2 from './components/register2'
+// import redirect from './components/register2'
 import Login from './components/login'
 import Home from './components/home'
 import './App.css';
@@ -19,7 +20,7 @@ function App() {
 // let history = useHistory();
   
 
-  function handleRegisterSubmit(newName, email, password) {
+  function handleRegisterSubmit(newName, email, password, cb) {
     setUsername(newName);
     setEmail(email);
     setPassword(password)
@@ -27,8 +28,8 @@ function App() {
     .then((response)=>{
       console.log(response)
       if(response.status === 200){
-        // this.history.push('/login')
-        // Redirect('/login')
+        cb();
+        // Register2.redirect()
       }
     })
     console.log('ive been clicked')
