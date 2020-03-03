@@ -5,7 +5,8 @@ const LoginContext = React.createContext({
     email: '',
     password: '',
     isAuthenticated: false,
-    handleRegisterSubmit: () => {}
+    handleRegisterSubmit: () => {},
+    handleLoginSubmit: () => {}
     
 }) 
 

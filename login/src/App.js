@@ -10,6 +10,7 @@ import LoginContext from './utils/loginContext'
 // import e from 'express';
 import axios from 'axios';
 
+
   
 
 function App() {
@@ -36,11 +37,21 @@ function App() {
     console.log('ive been clicked')
     console.log(`newname in app: ${newName}`)
   }
+
+  function handleLoginSubmit(logEmail, logPassword, call){
+    setEmail(logEmail);
+    setPassword(logPassword);
+    axios.post('api/login', {email: logEmail, password: logPassword})
+    .then((response)=>{
+      console.log(response);
+    })
+  }
+
   console.log(`what is the state in app?  ${username} ${email} ${password}`)
 
   return (
     <>
-      <LoginContext.Provider value={{username, handleRegisterSubmit}}>
+      <LoginContext.Provider value={{username, handleRegisterSubmit, handleLoginSubmit}}>
         <Router>
           <div>
             <Switch>
